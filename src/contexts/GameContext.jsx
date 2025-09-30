@@ -83,7 +83,7 @@ const GameContext = createContext();
 
 // API base URL
 const API_BASE_URL = "https://f1backend.vercel.app/api";
-i;
+
 // Custom hook to use game context
 export const useGame = () => {
   const context = useContext(GameContext);
