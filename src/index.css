@@ -1,0 +1,569 @@
+/* === Import Google Fonts === */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Playfair+Display:wght@400;700&display=swap");
+
+/* === Tailwind core === */
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* === Formula1 Font Declarations === */
+@font-face {
+  font-family: "Formula1";
+  src: url("./assets/font/Formula1-Regular-1.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "DigitalNumbers";
+  src: url("./assets/font/DigitalNumbers-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Formula1";
+  src: url("./assets/font/Formula1-Bold_web.ttf") format("truetype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Formula1";
+  src: url("./assets/font/Formula1-Wide.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* === Theme tokens (Tailwind v4) === */
+@theme {
+  --color-background: var(--color-background);
+  --color-foreground: var(--color-foreground);
+  --color-primary: var(--color-primary);
+  --color-secondary: var(--color-secondary);
+
+  --font-sans: var(--font-sans);
+  --font-display: var(--font-display);
+  --font-formula1: var(--font-formula1);
+  --font-digitalNumber: var(--font-digitalNumber);
+  --color-lightpurple: var(--color-lightpurple);
+}
+
+/* === Theme Variables === */
+
+/* Light theme (default) */
+:root {
+  --color-background: linear-gradient(
+    135deg,
+    rgba(16, 24, 40, 0.96) 0%,
+    rgba(0, 0, 0, 0.96) 50%,
+    rgba(30, 41, 57, 0.96) 100%
+  );
+  --color-lightpurple: rgb(233, 215, 254);
+  --color-off: linear-gradient(
+    180deg,
+    rgba(74, 85, 101, 0.44) 0%,
+    rgba(54, 65, 83, 0.44) 50%,
+    rgba(30, 41, 57, 0.44) 100%
+  );
+  --color-foreground: #111827;
+  --color-primary: #2563eb; /* Tailwind blue-600 */
+  --color-secondary: #9333ea; /* Tailwind purple-600 */
+
+  --font-sans: "Poppins", sans-serif;
+  --font-display: "Playfair Display", serif;
+  --font-formula1: "Formula1", "Poppins", sans-serif; /* Fallback added */
+  --font-digitalNumber: "DigitalNumbers", sans-serif;
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --accent: oklch(0.97 0 0);
+  --accent-foreground: oklch(0.205 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: oklch(0.922 0 0);
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --chart-1: oklch(0.646 0.222 41.116);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Dark theme */
+:root.dark {
+  --color-off: linear-gradient(
+    180deg,
+    rgba(74, 85, 101, 0.44) 0%,
+    rgba(54, 65, 83, 0.44) 50%,
+    rgba(30, 41, 57, 0.44) 100%
+  );
+  --color-lightpurple: rgb(233, 215, 254);
+  --color-background: #111827;
+  --color-foreground: #f9fafb;
+  --color-primary: #3b82f6; /* Tailwind blue-500 */
+  --color-secondary: #a855f7; /* Tailwind purple-500 */
+}
+
+/* === Base Styles === */
+body {
+  margin: 0;
+  background: var(--color-background);
+  max-width: 100vw;
+  overflow-x: hidden;
+  color: var(--color-foreground);
+  font-family: var(--font-formula1);
+  min-height: 100dvh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Headings use Formula1 font */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-formula1);
+}
+
+/* === Formula1 Specific Styles === */
+.formula1-header {
+  font-family: var(--font-formula1);
+  font-size: 58px;
+  font-weight: 500;
+  line-height: 80px;
+  letter-spacing: -0.06em;
+  text-align: center;
+  color: #ffffff; /* Text color remains white */
+  text-shadow: 0px 5px 8px rgba(173, 216, 230, 0.4),
+    /* Light blue, slightly below, with blur */ 0px 8px 15px
+      rgba(173, 216, 230, 0.2); /* Slightly larger, more blurred, more transparent */
+}
+
+.formula1-text {
+  font-family: var(--font-formula1);
+  font-weight: 400; /* Regular weight */
+}
+.digitalnumbers-header {
+  font-family: "DigitalNumbers";
+  font-size: 80px;
+  font-weight: 500;
+  line-height: 80px;
+  letter-spacing: -0.06em;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.digitalnumbers-header-bigger {
+  font-family: "DigitalNumbers";
+  font-size: 130px;
+  font-weight: 500;
+  line-height: 80px;
+
+  text-align: center;
+  color: #ffffff; /* Text color remains white */
+  text-shadow: 0px 5px 8px rgba(173, 216, 230, 0.4),
+    /* Light blue, slightly below, with blur */ 0px 8px 15px
+      rgba(173, 216, 230, 0.2); /* Slightly larger, more blurred, more transparent */
+}
+.digital-small {
+  font-family: "DigitalNumbers";
+  font-size: 32px;
+  font-weight: 500;
+  line-height: 50px;
+
+  text-align: center;
+  color: #ffffff; /* Text color remains white */
+  text-shadow: 0px 5px 8px rgba(173, 216, 230, 0.4),
+    /* Light blue, slightly below, with blur */ 0px 8px 15px
+      rgba(173, 216, 230, 0.2); /* Slightly larger, more blurred, more transparent */
+}
+/* === Debug/Test Class (Optional — Remove in Production) === */
+.formula1-test {
+  font-family: "Formula1", "Poppins", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  background: black;
+  padding: 20px;
+  margin: 20px 0;
+  border: 2px solid red;
+}
+.glowing-button {
+  width: 200px;
+  height: 200px;
+}
+.bg-off {
+  background: var(--color-off);
+}
+.inactive {
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.02),
+      rgba(255, 255, 255, 0.02)
+    ),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.08) -2.94%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  backdrop-filter: blur(48px);
+  box-shadow: 0px 108px 132px 0px #4f3a8940 inset,
+    0px 3px 3px 0px #ffffff29 inset;
+}
+.game-view {
+  border: 1px solid rgba(243, 237, 237, 0.9);
+
+  border-radius: 7px;
+  background-color: rgba(117, 25, 249, 0.15);
+  /* box-shadow: 0px 0px 56px 0px #000000 ; */
+  /* You may also need to add a border-image-slice property for a proper render */
+  border-image-slice: 1;
+}
+.green-state {
+  background: #32cd32; /* Solid green background from the image */
+  border-radius: 12px; /* To get the rounded corners */
+  box-shadow: 0 0 10px 4px rgba(50, 205, 50, 0.5),
+    /* A bright, outer glow */ 0 0 20px 5px rgba(50, 205, 50, 0.2),
+    /* A softer, wider glow */ inset 0 0 5px 2px rgba(255, 255, 255, 0.5); /* An inner highlight for gloss */
+
+  /* Additional styles for the button's content */
+  color: #fff;
+  font-size: 24px;
+  width: 100%;
+  max-width: 90px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.purple-state {
+  background: radial-gradient(circle at center, #4b34c7 65%, #6b4eff 100%);
+  backdrop-filter: blur(48px);
+
+  /* Stronger white edge + soft purple inner glow */
+  box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.95),
+    /* brighter white edges */ inset 0 0 50px rgba(107, 78, 255, 0.7),
+    /* purple glow spreading inside */ 0 0 30px rgba(107, 78, 255, 0.5); /* soft purple outer aura */
+
+  /* Button shape (unchanged) */
+  border-radius: 12px;
+  border: none;
+  font-size: 24px;
+  width: 100%;
+  max-width: 90px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  /* White glowing text */
+  color: #fff;
+  text-shadow: 0 0 6px rgba(255, 255, 255, 0.85),
+    0 0 14px rgba(255, 255, 255, 0.6);
+
+  line-height: 1;
+  position: relative;
+
+  overflow: hidden;
+  transition: transform 0.2s ease-in-out;
+}
+
+.complex-button {
+  /* Semi-transparent background for the base color */
+
+  /* Blurring effect for a frosted, glass-like appearance */
+
+  /* The layered inset shadows to create the glowing, multi-color effect */
+  box-shadow: 0px 96px 120px 0px #583bdc inset,
+    /* Deep purple glow from the bottom */ 0px 36px 48px 0px #9a89e6 inset,
+    /* Lighter purple, more focused glow */ 0px 15px 48px 0px #ff7300 inset,
+    /* Orange glow at the top */ 0px 6px 12px 0px #ffffff inset; /* Sharp white highlight at the very top */
+
+  /* Very rounded corners to create the pill shape */
+  border-radius: 9999px;
+
+  /* Basic button styling to match the text and size */
+  padding: 16px 48px;
+  color: #ffffff;
+  font-family: sans-serif;
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+}
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+.formula-small {
+  font-family: var(--font-formula1);
+
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 80px;
+  letter-spacing: -0.06em;
+  text-align: center;
+  color: #ffffff; /* Text color remains white */
+  text-shadow: 0px 5px 8px rgba(173, 216, 230, 0.4),
+    /* Light blue, slightly below, with blur */ 0px 8px 15px
+      rgba(173, 216, 230, 0.2); /* Slightly larger, more blurred, more transparent */
+}
+.lights-out-button {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: sans-serif;
+  padding: 1.5rem 10rem; /* Equivalent to px-20 py-6 */
+  color: white;
+  font-weight: 500;
+  font-size: 1.5rem; /* Equivalent to text-2xl */
+  border-radius: 0.1rem; /* A standard rounded corner */
+
+  /* --- Key Glow Effects --- */
+
+  /* 1. The main outer glow */
+  box-shadow: 0px 0px 38px 0px #200f8b;
+
+  /* 2. The background color */
+  background: #0d0d1a; /* A very dark blue-black */
+
+  /* 3. A subtle inner border to catch the light */
+  border: 2px solid rgba(245, 245, 245, 0.6);
+
+  /* 4. The glow effect on the text itself */
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.7),
+    0 0 15px rgba(118, 56, 247, 0.6);
+
+  /* --- Transitions for Hover Effect --- */
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.lights-out-button:hover {
+  /* Slightly intensify the glow on hover */
+  box-shadow: 0px 0px 48px 5px #200f8b;
+}
+
+.background-blur {
+  position: absolute;
+  inset: 0;
+  z-index: 25;
+  background: rgb(255 248 246 / 0%);
+  backdrop-filter: blur(4px);
+}
+.car-track-container {
+  position: relative; /* Essential for positioning the pseudo-elements */
+  width: 800px; /* Adjust as needed */
+  height: 400px; /* Adjust as needed */
+  display: flex; /* To center content, if any */
+  justify-content: center;
+  align-items: center;
+  background-color: #0d0d0d; /* Dark background to match the image */
+  overflow: hidden; /* Important to clip pseudo-elements if they extend too far */
+}
+
+/* Top border segment */
+.car-track-container::before {
+  content: "";
+  position: absolute;
+  top: 80px; /* Distance from the top of the container */
+  left: 50%;
+  transform: translateX(-50%); /* Center the element */
+  width: 70%; /* Width of the horizontal line */
+  height: 4px; /* Thickness of the line */
+  background-color: #ffcc00; /* Yellow color */
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* Optional subtle glow */
+}
+
+/* Bottom border segment */
+.car-track-container::after {
+  content: "";
+  position: absolute;
+  bottom: 80px; /* Distance from the bottom of the container */
+  left: 50%;
+  transform: translateX(-50%); /* Center the element */
+  width: 70%; /* Width of the horizontal line */
+  height: 4px; /* Thickness of the line */
+  background-color: #ffcc00; /* Yellow color */
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* Optional subtle glow */
+}
+
+/* Vertical extensions for the top line */
+/* We'll use more pseudo-elements or a nested div structure for these */
+/* For simplicity, let's add them as children or use more specific styling */
+
+/* To create the vertical parts without adding more HTML, 
+   we can get creative with more pseudo-elements or multiple shadows, 
+   but for clarity, let's assume we want to extend the ::before/::after concept. 
+   A more robust way is to make these horizontal lines separate divs and then 
+   add ::before/::after to those divs. */
+
+/* Let's refine the approach to use specific `div` elements for the lines 
+   if we need more control over individual segments, or continue with 
+   chained pseudo-elements. Given the image, it implies distinct segments. */
+
+/* --- Alternative approach: using more specific pseudo-elements or nested elements for vertical lines --- */
+
+/* Let's make the main horizontal bars and then attach pseudo-elements to them */
+.track-line {
+  position: absolute;
+  height: 4px; /* Thickness */
+  width: 70%; /* Width of the horizontal line */
+  background-color: #ffcc00;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* Optional glow */
+}
+
+.track-line.top {
+  top: 80px;
+}
+
+.track-line.bottom {
+  bottom: 80px;
+}
+
+/* Vertical segments for the top line */
+.track-line.top::before,
+.track-line.top::after {
+  content: "";
+  position: absolute;
+  top: -30px; /* Position above the horizontal line */
+  width: 4px; /* Thickness */
+  height: 30px; /* Length */
+  background-color: #ffcc00;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* Optional glow */
+}
+
+.track-line.top::before {
+  left: 0; /* Align with the start of the horizontal line */
+}
+
+.track-line.top::after {
+  right: 0; /* Align with the end of the horizontal line */
+}
+
+/* Vertical segments for the bottom line */
+.track-line.bottom::before,
+.track-line.bottom::after {
+  content: "";
+  position: absolute;
+  bottom: -30px; /* Position below the horizontal line */
+  width: 4px; /* Thickness */
+  height: 30px; /* Length */
+  background-color: #ffcc00;
+  box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* Optional glow */
+}
+
+.track-line.bottom::before {
+  left: 0;
+}
+
+.track-line.bottom::after {
+  right: 0;
+}
